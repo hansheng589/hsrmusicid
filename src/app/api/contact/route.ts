@@ -2,6 +2,10 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { db } from "@/lib/db";
 
+// 1. TAMBAHKAN BARIS INI: Memberi tahu Next.js agar file ini berjalan di Edge Runtime Cloudflare
+export const runtime = 'edge';
+export const dynamic = 'force-dynamic';
+
 const ContactSchema = z.object({
   name: z.string().trim().min(2, "Nama minimal 2 karakter").max(120),
   email: z.string().trim().email("Email tidak valid").max(180),
